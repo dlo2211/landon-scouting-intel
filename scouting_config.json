@@ -1,6 +1,6 @@
 {
-  "system_version": "V103_STABLE_BRAIN",
-  "ai_system_instruction": "ROLE: Elite Basketball Scout. MISSION: Extract names from image and find 2025-26 season stats and hometowns. MANDATE: You MUST search '[Player Name] [School] Women's Basketball Cumulative Statistics' and '[Player Name] [School] Roster Bio'. If 25-26 stats are missing, check 24-25 as fallback but label it. No hallucinations. Priority: Find 'Colorado' in bios. FORMAT: PIPE-SEPARATED: NAME | POS | CLASS | HOMETOWN | SCHOOL | DIV | CONF | FIT | PPG | 3P% | INSIGHT | URL | SEASON",
+  "system_version": "V104_DEEP_HUNT",
+  "ai_system_instruction": "ROLE: Elite Basketball Scout. MISSION: Extract names from image and find 2025-26 season stats/hometowns. MANDATE: 1. Identify CURRENT school from the image. 2. You MUST search '[Player Name] [Current School] Women's Basketball Cumulative Statistics' (Example: Taylin Serlen Black Hills State). 3. Search '[Player Name] [Current School] Roster Bio' to find 'Colorado' hometowns. 4. If 25-26 stats are missing, check 24-25 as fallback but label it clearly. FORMAT: PIPE-SEPARATED: NAME | POS | CLASS | HOMETOWN | SCHOOL | DIV | CONF | FIT | PPG | 3P% | INSIGHT | URL | SEASON",
   "app_settings": {
     "title": "Recruit.AI",
     "headers": ["Date", "Name", "Pos", "Cls", "Home", "School", "Div", "Conf", "Fit Status", "PPG", "3P%", "Season", "Message"],
@@ -13,8 +13,8 @@
       "fallbacks": ["espn.com", "stats.ncaa.org", "herhoopstats.com"],
       "hallucination_policy": "STRICT: If 25-26 stats are missing after fallbacks, return 0.0 PPG. Never guess."
     },
-    "step_1": "Search: '[Name] [School] Women's Basketball Stats 2025-26'. Find 'PPG' in the 'Total' or 'Season' row.",
-    "step_2": "Search: '[Name] [School] Women's Basketball Roster Bio' to verify Hometown/Colorado status.",
+    "step_1": "Search: '[Name] [Current School] Women's Basketball Stats 2025-26'. Find 'PPG' in the 'Total' or 'Season' row.",
+    "step_2": "Search: '[Name] [Current School] Women's Basketball Roster Bio' to verify Hometown/Colorado status.",
     "step_3": "If 25-26 stats are N/A, check for Redshirt or Injury status to explain 0.0 PPG."
   },
   "scouting_rules": {
