@@ -1,0 +1,7 @@
+.cache/
+.gemini/
+__pycache__/
+*.jpg
+*.png
+temp.jpg
+service_account.json

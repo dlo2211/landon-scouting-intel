@@ -1,0 +1,42 @@
+{
+  "system_version": "V103_STABLE_BRAIN",
+  "ai_system_instruction": "ROLE: Elite Basketball Scout. MISSION: Extract names from image and find 2025-26 season stats and hometowns. MANDATE: You MUST search '[Player Name] [School] Women's Basketball Cumulative Statistics' and '[Player Name] [School] Roster Bio'. If 25-26 stats are missing, check 24-25 as fallback but label it. No hallucinations. Priority: Find 'Colorado' in bios. FORMAT: PIPE-SEPARATED: NAME | POS | CLASS | HOMETOWN | SCHOOL | DIV | CONF | FIT | PPG | 3P% | INSIGHT | URL | SEASON",
+  "app_settings": {
+    "title": "Recruit.AI",
+    "headers": ["Date", "Name", "Pos", "Cls", "Home", "School", "Div", "Conf", "Fit Status", "PPG", "3P%", "Season", "Message"],
+    "sort_by_fit": true
+  },
+  "verification_protocol": {
+    "boundary_rule": "ONLY process players visible in the image. If the list is long, prioritize accuracy over speed.",
+    "triangulation_mandate": {
+      "priority_source": "Official Team Athletics Roster/Stats (Sidearm Sports, .edu sites)",
+      "fallbacks": ["espn.com", "stats.ncaa.org", "herhoopstats.com"],
+      "hallucination_policy": "STRICT: If 25-26 stats are missing after fallbacks, return 0.0 PPG. Never guess."
+    },
+    "step_1": "Search: '[Name] [School] Women's Basketball Stats 2025-26'. Find 'PPG' in the 'Total' or 'Season' row.",
+    "step_2": "Search: '[Name] [School] Women's Basketball Roster Bio' to verify Hometown/Colorado status.",
+    "step_3": "If 25-26 stats are N/A, check for Redshirt or Injury status to explain 0.0 PPG."
+  },
+  "scouting_rules": {
+    "pos_allowed": ["G", "F", "C", "G/F", "F/C"],
+    "class_allowed": ["Fr", "So", "Jr", "Sr", "RS Jr", "RS Sr", "Gs"],
+    "d1_is_auto_fit": true,
+    "d2_d3_ppg_threshold": 6.0,
+    "home_state_priority": "Colorado"
+  },
+  "labels": {
+    "fit_yes_d1": "YES - D1",
+    "fit_yes_d1_no_stats": "YES - D1 (Stats N/A)",
+    "fit_yes_local": "YES - Colorado",
+    "fit_yes_ppg": "YES - PPG",
+    "fit_no_ppg": "NO - PPG",
+    "fit_no_stats": "NO - 25-26 stats N/A",
+    "msg_no_fit": "N/A - Not a fit"
+  },
+  "text_script": {
+    "intro": "Hi {first_name}! This is Coach Lopez from Regis University in Denver.",
+    "body": "I was checking out the portal and your game caught my eye—especially {insight}.",
+    "closing": "Would love to chat about how you'd fit our culture. Do you have time for a call this week?",
+    "tone": "Warm, natural, positive"
+  }
+}
